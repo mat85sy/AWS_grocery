@@ -81,9 +81,9 @@ This repository provides the Terraform Infrastructure as Code (IaC) to deploy th
     ssh -i /path/to/your/private-key.pem ec2-user@<EC2_PUBLIC_IP>
     ```
     
-    b. Navigate to the backend directory:
+    b. Navigate to the APP directory:
     ```bash
-    cd /home/ec2-user/AWS_grocery/backend
+    cd /home/ec2-user/AWS_grocery
     ```
 
     c. Populate Database:
@@ -104,8 +104,9 @@ This repository provides the Terraform Infrastructure as Code (IaC) to deploy th
     pip3 install -r requirements.txt
     ```
     
-    f. Start the Flask backend:
+    f. Navigate to the backend directory and Start the Flask backend:
     ```bash
+    cd AWS_grocery/backend
     python3 run.py
     ```
 
