@@ -80,14 +80,25 @@ This repository provides the Terraform Infrastructure as Code (IaC) to deploy th
     ```bash
     cd /home/ec2-user/AWS_grocery/backend
     ```
+    c. Populate Database:
+       Use the `psql` command-line tool to load the initial data from the provided SQL dump file into your RDS instance. Replace `<rds-endpoint>` with the actual endpoint of your RDS instance (found in the AWS console or Terraform outputs).
+       ```bash
+       psql -h <rds-endpoint> -U grocery_user -d grocerymate_db -f backend/app/sqlite_dump_clean.sql
+       ```
     
-    c. Install Dependencies (Optional - Dependencies are installed automatically during instance creation, but run this to ensure they are up-to-date):
+    d. Verify Insertion:
+       Run these commands to confirm the data was loaded correctly. Replace `<rds-endpoint>` with your RDS endpoint.
+       ```bash
+       psql -h <rds-endpoint> -U grocery_user -d grocerymate_db -c "SELECT COUNT(*) FROM users;"
+       psql -h <rds-endpoint> -U grocery_user -d grocerymate_db -c "SELECT COUNT(*) FROM products;"
+       ```
+    e. Install Dependencies (Optional - Dependencies are installed automatically during instance creation, but run this to ensure they are up-to-date):
     ```bash
     pip3 install --upgrade pip
     pip3 install -r requirements.txt
     ```
     
-    d. Start the Flask backend:
+    f. Start the Flask backend:
     ```bash
     python3 run.py
     ```
