@@ -158,4 +158,4 @@ If you prefer to run the backend application using Docker instead of the direct 
 
 This project is licensed under the MIT License.
 
-This software and its associated documentation were developed as part of the Masterschool Cloud Engineering program in 2025. We extend our thanks to Alejandro Roman Ibanez, Thomas Ressel, and Vlasis Ioannidis for their guidance and support throughout the development process.
+This software and its associated documentation were developed as part of the Masterschool Cloud Engineering program in 2025. We extend our thanks to Alejandro Roman Ibanez, Thomas Ressel, Jonas Adamietz and Vlasis Ioannidis for their guidance and support throughout the development process.
