@@ -7,7 +7,11 @@
 [![Docker](https://img.shields.io/badge/Container-Docker-2496ED  )](https://www.docker.com/  )
 [![License](https://img.shields.io/badge/License-MIT-green  )](#-license)
 
+
 This repository provides the Terraform Infrastructure as Code (IaC) to deploy the GroceryMate application on AWS. The setup includes a VPC, EC2 instance for the application server, RDS PostgreSQL database, and an S3 bucket for avatar storage, all configured for security and scalability.
+## 📸 Architecture Diagram
+
+![Architecture Diagram]<img width="1320" height="1022" alt="Untitled" src="https://github.com/user-attachments/assets/d408ba1f-d0b2-43a0-84f0-33fff93dcb3f" />
 
 ## 🚀 Deployment Guide
 
