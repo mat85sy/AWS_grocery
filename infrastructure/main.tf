@@ -272,3 +272,57 @@ resource "aws_instance" "app_server" {
     Project = var.project_name
   }
 }
+# --- NEW RESOURCES FOR VPC FLOW LOGS ---
+
+# CloudWatch Log Group for VPC Flow Logs
+resource "aws_cloudwatch_log_group" "vpc_flow_logs" {
+  name = "/aws/vpc/flowlogs/${var.project_name}-vpc"
+  tags = {
+    Name    = "${var.project_name}-vpc-flow-logs"
+    Project = var.project_name
+  }
+}
+
+# IAM Role for VPC Flow Logs
+resource "aws_iam_role" "vpc_flow_log_role" {
+  name = "${var.project_name}-vpc-flow-log-role"
+
+  assume_role_policy = jsonencode({
+    Version = "2012-10-17"
+    Statement = [
+      {
+        Sid    = ""
+        Effect = "Allow"
+        Principal = {
+          Service = "vpc-flow-logs.amazonaws.com"
+        }
+        Action = "sts:AssumeRole"
+      }
+    ]
+  })
+  tags = {
+    Name    = "${var.project_name}-vpc-flow-log-role"
+    Project = var.project_name
+  }
+}
+
+# Attach the required policy to the VPC Flow Logs role
+resource "aws_iam_role_policy_attachment" "vpc_flow_log_policy" {
+  role       = aws_iam_role.vpc_flow_log_role.name
+  policy_arn = "arn:aws:iam::aws:policy/CloudWatchLogsFullAccess" # Or a more specific policy
+}
+
+# VPC Flow Log
+resource "aws_flow_log" "vpc_flow_log" {
+  log_destination = aws_cloudwatch_log_group.vpc_flow_logs.arn
+  iam_role_arn    = aws_iam_role.vpc_flow_log_role.arn
+  vpc_id          = aws_vpc.main.id
+  traffic_type    = "ALL" # Log all traffic (ACCEPT, REJECT, ALL)
+
+  tags = {
+    Name    = "${var.project_name}-vpc-flow-log"
+    Project = var.project_name
+  }
+}
+
+# --- END NEW RESOURCES ---
