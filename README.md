@@ -156,6 +156,25 @@ This repository provides the Terraform Infrastructure as Code (IaC) to deploy th
     ```bash
     terraform destroy
     ```
+## 🔍 Enhanced Observability: VPC Flow Logs Integration
+
+To improve the operational visibility and security posture of the infrastructure, **AWS VPC Flow Logs** were integrated into the Terraform configuration.
+
+### Integration Details
+
+*   **Service Added:** AWS VPC Flow Logs.
+*   **Purpose:** To capture detailed information about IP traffic going to and from network interfaces within the `grocerymate` VPC. This provides insights into network usage, helps troubleshoot connectivity issues, and enhances security analysis.
+*   **Method:** The integration was achieved purely through modifications to the Terraform configuration (`main.tf`).
+    *   A new CloudWatch Log Group (`/aws/vpc/flowlogs/grocerymate-vpc`) was created to store the flow log data.
+    *   A dedicated IAM role (`grocerymate-vpc-flow-log-role`) with the necessary trust policy and `CloudWatchLogsFullAccess` permissions was created for the VPC Flow Logs service.
+    *   The `aws_flow_log` resource was added, targeting the main VPC (`grocerymate-vpc`) and configured to log `ALL` traffic to the newly created CloudWatch Log Group using the dedicated IAM role.
+
+### Impact
+
+*   **Enhanced Monitoring:** Network traffic within the VPC is now logged and accessible via AWS CloudWatch Logs.
+*   **Security:** Provides an additional layer of network-level monitoring for potential security analysis.
+*   **Operational Insight:** Facilitates easier troubleshooting of network-related issues.
+*   **Cost:** A minimal cost is associated with storing the flow log data in CloudWatch.
 
 ## **📝 Notes**:
 
