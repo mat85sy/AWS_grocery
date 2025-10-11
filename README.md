@@ -88,12 +88,6 @@ This repository provides the Terraform Infrastructure as Code (IaC) to deploy th
     
     c. Verify Docker Installation and Start Service:
     ```bash
-    docker --version
-    sudo systemctl start docker
-    sudo systemctl enable docker
-    ```
-    If Docker is not installed, install it using the following commands:
-    ```bash
     sudo yum update -y
     sudo amazon-linux-extras install docker -y
     sudo systemctl start docker
@@ -101,13 +95,14 @@ This repository provides the Terraform Infrastructure as Code (IaC) to deploy th
     sudo usermod -aG docker ec2-user
     # Log out and log back in for group changes to take effect, or run:
     newgrp docker
+    sudo systemctl status docker
     docker --version
     ```
     
     d. Populate Database:
        Use the `psql` command-line tool to load the initial data from the provided SQL dump file into your RDS instance. Replace `<rds-endpoint>` with the actual endpoint of your RDS instance (found in the AWS console or Terraform outputs).
        ```bash
-       psql -h <rds-endpoint> -U grocery_user -d grocerymate_db -f backend/app/sqlite_dump_clean.sql
+       psql -h <rds-endpoint> -U grocery_user -d grocerymate_db -f app/sqlite_dump_clean.sql
        ```
        *   When prompted for a password, enter the value you set for `db_password` in your `terraform.tfvars` file (the default is `YourSecretPassword123` if you didn't change it).
     
