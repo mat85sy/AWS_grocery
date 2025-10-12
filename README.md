@@ -86,17 +86,15 @@ This repository provides the Terraform Infrastructure as Code (IaC) to deploy th
     cd /home/ec2-user/AWS_grocery/backend
     ```
     
-    c. Verify Docker Installation and Start Service:
+    c. Verify Docker Installation and Start Service (Docker is already installed by the Terraform script, but the service needs to be enabled and started):
     ```bash
-    sudo yum update -y
-    sudo amazon-linux-extras install docker -y
+    docker --version
     sudo systemctl start docker
     sudo systemctl enable docker
     sudo usermod -aG docker ec2-user
     # Log out and log back in for group changes to take effect, or run:
     newgrp docker
     sudo systemctl status docker
-    docker --version
     ```
     
     d. Populate Database:
