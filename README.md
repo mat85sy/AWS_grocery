@@ -13,8 +13,6 @@ This repository provides the Terraform Infrastructure as Code (IaC) to deploy th
 
 <img width="1331" height="927" alt="Untitled Diagram drawio (5)" src="https://github.com/user-attachments/assets/3a93ddff-6844-4cfb-96d2-ea842c7ddbed" />
 
-![Architecture Diagram](https://github.com/user-attachments/assets/d408ba1f-d0b2-43a0-84f0-33fff93dcb3f)
-
 ## 🚀 Deployment Guide
 
 ### Prerequisites
